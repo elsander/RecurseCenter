@@ -64,19 +64,46 @@ files
 * read through basic Magit tutorial
 * learned about emacs keybindings and made shortcuts in my .emacs!
 
+##Week 2, 7/13/15:
+#SQL pairing:
+* Got PostGreSQL set up (after much pain and suffering)
+* created restaurants database from flattened JSON
+* set up skeleton code for more complex schema
 
-#SQL project:
--try to create a stupid simple database using SQLalchemy, to make sure
-I understand it
--try to create old dumb restaurants database in SQLalchemy
--set up same flat database, but with categories and category join
--given success on those things, start to do the big complicated schema
-I am planning in my head
+##7/14/15:
+#SQL pairing:
+* Got PostGreSQL configured with virtualenvwrapper, once again
+* Got SQL CREATE TABLE to work
+* populated restaurants table!
+* parsed JSON data for categories, attributes, and restaurants info
+* lots of reading about SQLalchemy API!
+
+##7/15/15:
+#SQL pairing:
+* Learned things about sed, echo, and single vs double quotes in shell
+* Single and double quotes treat escapes differently!
+* fixed escaping in Yelp JSON
+* Added reviews to database too! Database COMPLETE!!!
+
+#Workshop: tmux
+* tmux is a tool for windowing in the terminal
+* It operates similarly to emacs, but with different keybindings
+* Lets you close the terminal but keep memory of the session so it can
+  be reopened, even if you have an ssh link!
+
+##7/16/15:
+#Prolog:
+-go through a tutorial to understand basic syntax and logic
+-try writing my own program for a little graph theory problem
+-when is Prolog and efficient approach?
+
+#Blogging:
+-outline a blog post about SQLalchemy
+-consider blog post on Git internals?
 
 #other things
 -write up a little thingy about pull requests and git config files, so
 I don't forget it all!
-- clean up github random projects
 
 ##Things to look into at some point:
 * https://www.kaggle.com/c/grasp-and-lift-eeg-detection
