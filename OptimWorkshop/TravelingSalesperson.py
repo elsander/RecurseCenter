@@ -43,12 +43,12 @@ def GenerateMap(stops, fname = None, seed = None):
         
     return distMat
         
-def TravelingSalesman(stops, Alg, steps, param, seed = None,
+def TSP(stops, Alg, steps, param, seed = None,
                       coordfile = 'xycoords.txt'):
     '''A wrapper function that attempts to optimize the traveling 
-    salesman problem using a specified algorithm. If coordfile
+    salesperson problem using a specified algorithm. If coordfile
     exists, a preexisting set of coordinates will be used. Otherwise,
-    a new set of "stops" coordinates will be generated for the salesman to 
+    a new set of "stops" coordinates will be generated for the person to 
     traverse, and will be written to the specified file.'''
     
     ## Create the distance matrix, which will be used to calculate
@@ -85,4 +85,4 @@ if __name__ == "__main__":
     param = int(sys.argv[4])
     seed = int(sys.argv[5])
     coordfile = sys.argv[6]
-    TravelingSalesman(stops, Alg, steps, param, seed, coordfile)    
+    TSP(stops, Alg, steps, param, seed, coordfile)    
