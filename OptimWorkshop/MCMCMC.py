@@ -38,7 +38,8 @@ def MCMCMC(steps, nchains, distMat, seed):
     fits = [Fitness(chain, distMat) for chain in chains]
     bestFit = min(fits)
     bestSol = chains[fits.index(bestFit)]
-
+    fitHistory = []
+    
     for i in xrange(steps):
         ## swap chains
         if i % SWAPSTEPS == 0:
@@ -66,5 +67,6 @@ def MCMCMC(steps, nchains, distMat, seed):
 
         if i % 1000 == 0:
             print bestFit
+            fitHistory.append(bestFit)
             
-    return bestSol
+    return bestSol, fitHistory

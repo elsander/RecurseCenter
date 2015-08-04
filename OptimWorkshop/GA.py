@@ -15,6 +15,7 @@ def GeneticAlgorithm(steps, popsize, distMat, seed):
     bestSol = parentSols[parentFits.index(bestFit)]
     childSols = [[] for x in xrange(popsize)]
     childFits = [[] for x in xrange(popsize)]
+    fitHistory = []
 
     for i in xrange(steps):
         ## allow population to reproduce
@@ -29,6 +30,8 @@ def GeneticAlgorithm(steps, popsize, distMat, seed):
         ## children become parents for next generation
         parentSols = copy.deepcopy(childSols)
         parentFits = copy.deepcopy(childFits)
-        if i % 100 == 0:
+        if i % 1000 == 0:
             print bestFit
-    return bestSol
+            fitHistory.append(bestFit)
+
+    return bestSol, fitHistory

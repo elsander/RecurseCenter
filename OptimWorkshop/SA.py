@@ -1,7 +1,6 @@
 import random
 import math
 from InitMutFit import *
-import pdb
 
 def SimulatedAnnealing(steps, tryPerStep, distMat, seed):
     ## hardcoded
@@ -15,6 +14,7 @@ def SimulatedAnnealing(steps, tryPerStep, distMat, seed):
     bestFit = Fitness(bestSol, distMat)
     currSol = bestSol
     currFit = bestFit
+    fitHistory = []
 
     ## Initialize data structure for trial solutions and fitnesses
     trialSols = [[] for x in xrange(tryPerStep)]
@@ -46,6 +46,7 @@ def SimulatedAnnealing(steps, tryPerStep, distMat, seed):
             
         if i % 1000 == 0:
             print bestFit
+            fitHistory.append(bestFit)
         ## update temperature
         temp = temp - deltat
-    return bestSol
+    return bestSol, fitHistory

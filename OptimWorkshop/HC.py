@@ -11,6 +11,8 @@ def HillClimber(steps, tryPerStep, distMat, seed):
     ## Initialize data structure for trial solutions and fitnesses
     trialSols = [[] for x in xrange(tryPerStep)]
     trialFits = [[] for x in xrange(tryPerStep)]
+    fitHistory = []
+    
     for i in xrange(steps):
         ## try several steps
         for j in xrange(tryPerStep):
@@ -24,4 +26,5 @@ def HillClimber(steps, tryPerStep, distMat, seed):
             bestSol = trialSols[trialFits.index(bestFit)]
         if i % 1000 == 0:
             print bestFit
-    return bestSol
+            fitHistory.append(bestFit)
+    return bestSol, fitHistory

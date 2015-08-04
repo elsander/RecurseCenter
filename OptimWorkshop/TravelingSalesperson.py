@@ -61,28 +61,28 @@ def TSP(stops, Alg, steps, param, seed = None,
 
     if Alg == 'HC':
         ## param is the number of solutions to try per step
-        bestSol = HillClimber(steps, param, distMat, seed)
+        bestSol, fitHistory = HillClimber(steps, param, distMat, seed)
     elif Alg == 'SA':
         ## param is the number of solutions to try per step
-        bestSol = SimulatedAnnealing(steps, param, distMat, seed)
+        bestSol, fitHistory = SimulatedAnnealing(steps, param, distMat, seed)
     elif Alg == 'MC3':
         ## param is the number of solutions to try per step
-        bestSol = MCMCMC(steps, param, distMat, seed)
+        bestSol, fitHistory = MCMCMC(steps, param, distMat, seed)
     elif Alg == 'GA':
         ## param is the population size
-        bestSol = GeneticAlgorithm(steps, param, distMat, seed)
+        bestSol, fitHistory = GeneticAlgorithm(steps, param, distMat, seed)
     else:
-        raise ValueError('Algorithm must be "HC".')
+        raise ValueError('Algorithm must be "HC", "SA", "MC3", or "GA".')
 
     outfname = coordfile + '-' + Alg + '-' + str(steps) + '-' + str(param) + '.txt'
     scipy.savetxt(outfname, scipy.array(bestSol), fmt = '%i')
-    return bestSol
+    return bestSol, fitHistory
 
-if __name__ == "__main__":
-    stops = int(sys.argv[1])
-    Alg = sys.argv[2]
-    steps = int(sys.argv[3])
-    param = int(sys.argv[4])
-    seed = int(sys.argv[5])
-    coordfile = sys.argv[6]
-    TSP(stops, Alg, steps, param, seed, coordfile)    
+# if __name__ == "__main__":
+#     stops = int(sys.argv[1])
+#     Alg = sys.argv[2]
+#     steps = int(sys.argv[3])
+#     param = int(sys.argv[4])
+#     seed = int(sys.argv[5])
+#     coordfile = sys.argv[6]
+#     TSP(stops, Alg, steps, param, seed, coordfile)    
