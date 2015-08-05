@@ -1,6 +1,7 @@
 import random
 import math
 from InitMutFit import *
+import scipy
 import pdb
 
 def InitializeTemps(maxtemp, mintemp, nchains):
@@ -21,7 +22,6 @@ def TrySwap(hotFit, coldFit, hotTemp, coldTemp):
         return True
     else:
         return False
-    
 
 def MCMCMC(steps, nchains, distMat, seed):
     ##hardcoded, but these can also be tuned!
@@ -39,13 +39,20 @@ def MCMCMC(steps, nchains, distMat, seed):
     bestFit = min(fits)
     bestSol = chains[fits.index(bestFit)]
     fitHistory = []
+
+    ## For plotting
+    swaps = 0
+    swapAttempts = 0
+    swapProbs = []
     
     for i in xrange(steps):
         ## swap chains
         if i % SWAPSTEPS == 0:
             for j in xrange(0, nchains-1):
+                swapAttempts += 1
                 flag = TrySwap(fits[j], fits[j+1], temps[j], temps[j+1])
                 if flag:
+                    swaps += 1
                     chains[j], chains[j+1] = chains[j+1], chains[j]
                     fits[j], fits[j+1] = fits[j+1], fits[j]
         ## let each chain take a step
@@ -68,5 +75,8 @@ def MCMCMC(steps, nchains, distMat, seed):
         if i % 1000 == 0:
             print bestFit
             fitHistory.append(bestFit)
-            
+            swapProbs.append(float(swaps)/float(swapAttempts))
+
+    swapname = 'MC3-swaps-' + str(nchains) + '-' + str(stops) + '.txt'
+    scipy.savetxt(swapname, scipy.array(swapProbs))
     return bestSol, fitHistory

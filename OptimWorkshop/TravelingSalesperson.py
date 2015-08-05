@@ -63,7 +63,7 @@ def TSP(stops, Alg, steps, param, seed = None,
         ## param is the number of solutions to try per step
         bestSol, fitHistory = HillClimber(steps, param, distMat, seed)
     elif Alg == 'SA':
-        ## param is the number of solutions to try per step
+        ## param is a placeholder
         bestSol, fitHistory = SimulatedAnnealing(steps, param, distMat, seed)
     elif Alg == 'MC3':
         ## param is the number of solutions to try per step
@@ -78,11 +78,11 @@ def TSP(stops, Alg, steps, param, seed = None,
     scipy.savetxt(outfname, scipy.array(bestSol), fmt = '%i')
     return bestSol, fitHistory
 
-# if __name__ == "__main__":
-#     stops = int(sys.argv[1])
-#     Alg = sys.argv[2]
-#     steps = int(sys.argv[3])
-#     param = int(sys.argv[4])
-#     seed = int(sys.argv[5])
-#     coordfile = sys.argv[6]
-#     TSP(stops, Alg, steps, param, seed, coordfile)    
+if __name__ == "__main__":
+    stops = int(sys.argv[1])
+    Alg = sys.argv[2]
+    steps = int(sys.argv[3])
+    param = int(sys.argv[4])
+    seed = int(sys.argv[5])
+    coordfile = sys.argv[6]
+    TSP(stops, Alg, steps, param, seed, coordfile)    

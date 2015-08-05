@@ -2,7 +2,7 @@ import random
 import math
 from InitMutFit import *
 
-def SimulatedAnnealing(steps, tryPerStep, distMat, seed):
+def SimulatedAnnealing(steps, placeholder, distMat, seed):
     ## hardcoded
     STARTTEMP = 5
     ENDTEMP = .001
@@ -16,10 +16,6 @@ def SimulatedAnnealing(steps, tryPerStep, distMat, seed):
     currFit = bestFit
     fitHistory = []
 
-    ## Initialize data structure for trial solutions and fitnesses
-    trialSols = [[] for x in xrange(tryPerStep)]
-    trialFits = [[] for x in xrange(tryPerStep)]
-
     ## uniform cooling schedule based on number of steps
     ## There are lots of other strategies for cooling the chain
     ## but this is nice and simple
@@ -28,17 +24,15 @@ def SimulatedAnnealing(steps, tryPerStep, distMat, seed):
 
     for i in xrange(steps):
         ## try several steps
-        for j in xrange(tryPerStep):
-            trialSols[j] = Mutate(bestSol)
-            trialFits[j] = Fitness(trialSols[j], distMat)
-        ## if tmpFit is better (less than) currFit, it will always
+        trialSol = Mutate(bestSol)
+        trialFit = Fitness(trialSol, distMat)
+        ## if trialFit is better (less than) currFit, it will always
         ## be accepted. Otherwise, accept with probability related
         ## to the temperature.
-        tmpFit = min(trialFits)
-        probAccept = math.exp((currFit - tmpFit)/temp)
+        probAccept = math.exp((currFit - trialFit)/temp)
         if random.random() <= probAccept:
-            currFit = min(trialFits)
-            currSol = trialSols[trialFits.index(currFit)]
+            currFit = trialFit
+            currSol = trialSol
             ## update best solution if appropriate
             if currFit < bestFit:
                 bestFit = currFit

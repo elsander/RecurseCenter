@@ -40,3 +40,30 @@ def LongMC3(fname = None):
     pl.plot(Xs, run)
     pl.show()
     
+def LongSA(fname = None):
+    if fname:
+        run = scipy.genfromtxt(fname)
+    else:
+        bestSol, run = TSP(200, 'SA', 200000, 'placeholder', seed = None,
+                                  coordfile = 'tmp.txt')
+        fname = 'MultRuns-SA-Long.txt'
+        run = scipy.array(run)
+        scipy.savetxt(fname, run)
+
+    ## plotting
+    Xs = range(0, run.shape[0]*1000, 1000)
+    pl.plot(Xs, run)
+    pl.show()
+
+def MC3Swap(fname = None):
+    if fname:
+        swaps = scipy.genfromtxt(fname)
+    else:
+        bestSol, run = TSP(200, 'MC3', 10000, 10, seed = None,
+                                  coordfile = 'tmp.txt')
+        swaps = scipy.genfromtxt('MC3-swaps-10-200.txt')
+        
+    ## plotting
+    Xs = range(0, swaps.shape[0]*1000, 1000)
+    pl.plot(Xs, swaps)
+    pl.show()
