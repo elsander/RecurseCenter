@@ -2,7 +2,7 @@ import random
 from InitMutFit import *
 
 def GeneticAlgorithm(steps, popsize, distMat, seed):
-    ## hardcoded for now, but this is another thing you can tune!
+    ## hardcoded, but can be tuned to increase level of competition
     TOURNAMENTSIZE = 2
     
     random.seed(seed)

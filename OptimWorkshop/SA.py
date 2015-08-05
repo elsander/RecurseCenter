@@ -17,7 +17,7 @@ def SimulatedAnnealing(steps, placeholder, distMat, seed):
     fitHistory = []
 
     ## uniform cooling schedule based on number of steps
-    ## There are lots of other strategies for cooling the chain
+    ## There are lots of other strategies for cooling the chain,
     ## but this is nice and simple
     deltat = (STARTTEMP - ENDTEMP)/steps
     temp = STARTTEMP

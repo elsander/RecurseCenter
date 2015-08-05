@@ -1,4 +1,3 @@
-import sys
 import os
 import random
 import scipy
@@ -66,7 +65,7 @@ def TSP(stops, Alg, steps, param, seed = None,
         ## param is a placeholder
         bestSol, fitHistory = SimulatedAnnealing(steps, param, distMat, seed)
     elif Alg == 'MC3':
-        ## param is the number of solutions to try per step
+        ## param is the number of chains
         bestSol, fitHistory = MCMCMC(steps, param, distMat, seed)
     elif Alg == 'GA':
         ## param is the population size
@@ -77,12 +76,3 @@ def TSP(stops, Alg, steps, param, seed = None,
     outfname = coordfile + '-' + Alg + '-' + str(steps) + '-' + str(param) + '.txt'
     scipy.savetxt(outfname, scipy.array(bestSol), fmt = '%i')
     return bestSol, fitHistory
-
-if __name__ == "__main__":
-    stops = int(sys.argv[1])
-    Alg = sys.argv[2]
-    steps = int(sys.argv[3])
-    param = int(sys.argv[4])
-    seed = int(sys.argv[5])
-    coordfile = sys.argv[6]
-    TSP(stops, Alg, steps, param, seed, coordfile)    

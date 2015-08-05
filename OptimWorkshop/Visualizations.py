@@ -3,10 +3,9 @@ import pdb
 import scipy
 import pylab as pl
 
-## function to plot swap probability through time
-## plot best solution fitness through time
-
 def PlotMultipleRuns(Alg, nruns = 20, fname = None):
+    '''Plot "nruns" runs of a given algorithm to show performance
+    and variability across runs.'''
     if fname:
         runs = scipy.genfromtxt(fname)
     else:
@@ -26,12 +25,14 @@ def PlotMultipleRuns(Alg, nruns = 20, fname = None):
     pl.show()
 
 def LongMC3(fname = None):
+    '''Plot a single long MC3 run to demonstrate high performance 
+    but slow convergence.'''
     if fname:
         run = scipy.genfromtxt(fname)
     else:
         bestSol, run = TSP(200, 'MC3', 200000, 10, seed = None,
                                   coordfile = 'tmp.txt')
-        fname = 'MultRuns-MC3-Long.txt'
+        fname = 'MC3-Long-visualization.txt'
         run = scipy.array(run)
         scipy.savetxt(fname, run)
 
@@ -41,29 +42,18 @@ def LongMC3(fname = None):
     pl.show()
     
 def LongSA(fname = None):
+    '''Plot a single long SA run to demonstrate performance under slower
+    cooling schedule.'''
     if fname:
         run = scipy.genfromtxt(fname)
     else:
         bestSol, run = TSP(200, 'SA', 200000, 'placeholder', seed = None,
                                   coordfile = 'tmp.txt')
-        fname = 'MultRuns-SA-Long.txt'
+        fname = 'SA-Long-visualization.txt'
         run = scipy.array(run)
         scipy.savetxt(fname, run)
 
     ## plotting
     Xs = range(0, run.shape[0]*1000, 1000)
     pl.plot(Xs, run)
-    pl.show()
-
-def MC3Swap(fname = None):
-    if fname:
-        swaps = scipy.genfromtxt(fname)
-    else:
-        bestSol, run = TSP(200, 'MC3', 10000, 10, seed = None,
-                                  coordfile = 'tmp.txt')
-        swaps = scipy.genfromtxt('MC3-swaps-10-200.txt')
-        
-    ## plotting
-    Xs = range(0, swaps.shape[0]*1000, 1000)
-    pl.plot(Xs, swaps)
     pl.show()
