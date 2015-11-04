@@ -1,3 +1,6 @@
+## solutions to recursion problems, written for
+## technical interview prep
+
 import copy
 
 ## Write all permutations of a set of letters

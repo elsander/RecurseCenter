@@ -1,7 +1,8 @@
+% sime four-square game of life written in Erlang, to get
+% basic familiarity with the language!
+
 -module(gameoflife).
 -export([ping/2, start/0, clock/1]).
-
-% currying in erlang?
 
 clock(0) ->
     Cells = [ul, ur, ll, lr],

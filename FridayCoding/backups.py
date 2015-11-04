@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+## My own version control system, written in 3 hours!
+
 import os
 import sys
 import pickle
